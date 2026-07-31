@@ -152,7 +152,7 @@ export default function AvatarPage() {
                 )}
                 {selected && (
                   <Button variant="gold" size="sm" className="w-full" disabled>
-                    ✓ En uso
+                    En uso
                   </Button>
                 )}
               </div>

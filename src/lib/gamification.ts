@@ -39,16 +39,16 @@ export function createInitialProgress(): UserProgress {
 }
 
 export const LEVEL_THRESHOLDS = [
-  { level: 1, xpNeeded: 0, title: "Semilla ☀️" },
-  { level: 2, xpNeeded: 100, title: "Brote 🌱" },
-  { level: 3, xpNeeded: 250, title: "Ángel 👼" },
-  { level: 4, xpNeeded: 500, title: "Querubín 😇" },
-  { level: 5, xpNeeded: 800, title: "Pastorcillo 🐑" },
-  { level: 6, xpNeeded: 1200, title: "Discípulo 📖" },
-  { level: 7, xpNeeded: 1700, title: "Misionero 🌍" },
-  { level: 8, xpNeeded: 2300, title: "Profeta 🔮" },
-  { level: 9, xpNeeded: 3000, title: "Apóstol ✝️" },
-  { level: 10, xpNeeded: 4000, title: "Serafín 🔥" },
+  { level: 1, xpNeeded: 0, title: "Semilla" },
+  { level: 2, xpNeeded: 100, title: "Brote" },
+  { level: 3, xpNeeded: 250, title: "Ángel" },
+  { level: 4, xpNeeded: 500, title: "Querubín" },
+  { level: 5, xpNeeded: 800, title: "Pastorcillo" },
+  { level: 6, xpNeeded: 1200, title: "Discípulo" },
+  { level: 7, xpNeeded: 1700, title: "Misionero" },
+  { level: 8, xpNeeded: 2300, title: "Profeta" },
+  { level: 9, xpNeeded: 3000, title: "Apóstol" },
+  { level: 10, xpNeeded: 4000, title: "Serafín" },
 ];
 
 export function getLevel(xp: number): { level: number; title: string; xpToNext: number } {
@@ -63,7 +63,7 @@ export function getLevel(xp: number): { level: number; title: string; xpToNext: 
       };
     }
   }
-  return { level: 1, title: "Semilla ☀️", xpToNext: 100 };
+  return { level: 1, title: "Semilla", xpToNext: 100 };
 }
 
 export function addXp(

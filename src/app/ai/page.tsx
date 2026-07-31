@@ -6,7 +6,7 @@ import { useGame } from "@/context/GameContext";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { useSpeech } from "@/lib/useSpeech";
-import { Mic, MicOff, Volume2, Send, Bot, User, RefreshCw } from "lucide-react";
+import { Mic, MicOff, Volume2, Send, Bot, User, RefreshCw, Target, PenLine, CheckCircle2, TriangleAlert } from "lucide-react";
 
 interface Message {
   role: "assistant" | "user";
@@ -31,7 +31,7 @@ export default function AIPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      text: `Hi ${progress.username || "there"}! I'm your English coach. Try saying a Bible verse in English! 🎤`,
+      text: `Hi ${progress.username || "there"}! I'm your English coach. Try saying a Bible verse in English!`,
     },
   ]);
   const [isListening, setIsListening] = useState(false);
@@ -65,7 +65,7 @@ export default function AIPage() {
         setIsListening(false);
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", text: "I couldn't hear you clearly. Try again or check your microphone! 🎤" },
+          { role: "assistant", text: "I couldn't hear you clearly. Try again or check your microphone!" },
         ]);
       };
 
@@ -103,7 +103,7 @@ export default function AIPage() {
           ...prev,
           {
             role: "assistant",
-            text: `Great job! 🎉 You said: "${transcript}". That's close to "${expected}"! Let's try another one.`,
+            text: `Great job! You said: "${transcript}". That's close to "${expected}"! Let's try another one.`,
           },
         ]);
       } else {
@@ -111,7 +111,7 @@ export default function AIPage() {
           ...prev,
           {
             role: "assistant",
-            text: `Good try! You said "${transcript}". Try saying: "${expected}". Keep going! 💪`,
+            text: `Good try! You said "${transcript}". Try saying: "${expected}". Keep going!`,
           },
         ]);
       }
@@ -123,7 +123,7 @@ export default function AIPage() {
     if (!recognition) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", text: "Your browser doesn't support speech recognition. Try Chrome on desktop! 🌐" },
+        { role: "assistant", text: "Your browser doesn't support speech recognition. Try Chrome on desktop!" },
       ]);
       return;
     }
@@ -143,7 +143,9 @@ export default function AIPage() {
     <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
       {/* Header */}
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-purple-900">🤖 Aprende con IA</h1>
+        <h1 className="text-3xl font-bold text-purple-900 flex items-center justify-center gap-2">
+          <Bot className="text-purple-600" size={30} /> Aprende con IA
+        </h1>
         <p className="text-purple-500">
           Practica tu pronunciación en inglés. ¡Habla y la IA te evaluará!
         </p>
@@ -152,14 +154,14 @@ export default function AIPage() {
       {/* Score */}
       <Card className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">🎯</span>
+          <Target size={24} className="text-purple-600" />
           <div>
             <p className="text-sm text-purple-500">Puntaje</p>
             <p className="text-xl font-bold text-purple-900">{score} XP</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-2xl">📝</span>
+          <PenLine size={24} className="text-purple-600" />
           <div>
             <p className="text-sm text-purple-500">Intentos</p>
             <p className="text-xl font-bold text-purple-900">{attempts}</p>
@@ -170,7 +172,7 @@ export default function AIPage() {
           size="sm"
           onClick={() => {
             setMessages([
-              { role: "assistant", text: `Hi ${progress.username}! Let's practice more English! 🎤` },
+              { role: "assistant", text: `Hi ${progress.username}! Let's practice more English!` },
             ]);
             setScore(0);
             setAttempts(0);
@@ -245,8 +247,16 @@ export default function AIPage() {
       </div>
 
       <div className="text-center">
-        <p className="text-xs text-purple-400">
-          {recognition ? "✅ Speech Recognition disponible" : "⚠️ Usa Chrome en desktop para mejor experiencia"}
+        <p className="text-xs flex items-center justify-center gap-1.5">
+          {recognition ? (
+            <>
+              <CheckCircle2 size={14} className="text-green-500" /> Speech Recognition disponible
+            </>
+          ) : (
+            <>
+              <TriangleAlert size={14} className="text-amber-500" /> Usa Chrome en desktop para mejor experiencia
+            </>
+          )}
         </p>
       </div>
     </div>

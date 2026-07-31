@@ -7,6 +7,7 @@ import { rtdb } from "@/firebase/config";
 import { ref, push, onValue, update, remove, type Unsubscribe } from "firebase/database";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
+import { Swords } from "lucide-react";
 
 interface Room {
   id?: string;
@@ -83,7 +84,9 @@ export default function ArenaLobbyPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 space-y-8">
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-purple-900">🏟️ Arena Multiplayer</h1>
+        <h1 className="text-3xl font-bold text-purple-900 flex items-center justify-center gap-2">
+          <Swords size={30} className="text-purple-600" /> Arena Multiplayer
+        </h1>
         <p className="text-purple-500">
           Compite con hasta 5 amigos en batallas bíblicas en tiempo real
         </p>
@@ -123,15 +126,17 @@ export default function ArenaLobbyPage() {
         <h2 className="text-xl font-bold text-purple-900">Salas disponibles</h2>
         {rooms.length === 0 ? (
           <Card className="text-center py-12">
-            <div className="text-4xl mb-3">🏟️</div>
+            <div className="w-16 h-16 mx-auto rounded-full bg-purple-100 flex items-center justify-center mb-3">
+              <Swords size={32} className="text-purple-500" />
+            </div>
             <p className="text-purple-500">No hay salas disponibles. ¡Crea una!</p>
           </Card>
         ) : (
           rooms.map((room) => (
             <Card key={room.id} className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-xl">
-                  🏟️
+                <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+                  <Swords size={22} className="text-purple-600" />
                 </div>
                 <div>
                   <h3 className="font-bold text-purple-900">{room.name}</h3>

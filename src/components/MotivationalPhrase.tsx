@@ -1,7 +1,7 @@
 "use client";
 
 import { useGame } from "@/context/GameContext";
-import { X } from "lucide-react";
+import { X, Star, Flame, PartyPopper, Medal, Shield } from "lucide-react";
 import { useEffect } from "react";
 
 export default function MotivationalPhrase() {
@@ -24,16 +24,25 @@ export default function MotivationalPhrase() {
     streak: "bg-blue-50 border-blue-200",
   };
 
-  const icons: Record<string, string> = {
-    success: "🌟",
-    error: "💪",
-    levelup: "🎉",
-    badge: "🏅",
-    streak: "🔥",
+  const iconColors: Record<string, string> = {
+    success: "text-green-600",
+    error: "text-orange-500",
+    levelup: "text-amber-500",
+    badge: "text-purple-600",
+    streak: "text-blue-500",
+  };
+
+  const icons: Record<string, React.ComponentType<{ size: number; className?: string }>> = {
+    success: Star,
+    error: Shield,
+    levelup: PartyPopper,
+    badge: Medal,
+    streak: Flame,
   };
 
   const bg = bgColors[showMotivational.type] || "bg-purple-50 border-purple-200";
-  const icon = icons[showMotivational.type] || "📖";
+  const iconColor = iconColors[showMotivational.type] || "text-purple-600";
+  const Icon = icons[showMotivational.type] || Star;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 max-w-sm animate-slide-up">
@@ -45,7 +54,9 @@ export default function MotivationalPhrase() {
           <X size={16} />
         </button>
         <div className="flex items-start gap-3">
-          <span className="text-2xl">{icon}</span>
+          <span className={`shrink-0 ${iconColor}`}>
+            <Icon size={28} />
+          </span>
           <div>
             <p className="text-sm font-semibold text-gray-800 italic">
               &ldquo;{showMotivational.text}&rdquo;

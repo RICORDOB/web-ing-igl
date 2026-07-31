@@ -10,7 +10,7 @@ import ProgressBar from "@/components/ui/ProgressBar";
 import { useSpeech } from "@/lib/useSpeech";
 import GameIcon from "@/components/GameIcon";
 import { games } from "@/data/games";
-import { Volume2, RefreshCw, Home } from "lucide-react";
+import { Volume2, RefreshCw, Home, PartyPopper, Dumbbell, Shield, Zap, Check, X } from "lucide-react";
 
 type GameState = "playing" | "won" | "lost";
 
@@ -18,17 +18,16 @@ interface ArmorPiece {
   id: string;
   en: string;
   es: string;
-  emoji: string;
   image: string;
 }
 
 const ARMOR_PIECES: ArmorPiece[] = [
-  { id: "helmet", en: "helmet of salvation", es: "casco de salvación", emoji: "⛑️", image: "/armor/helmet.svg" },
-  { id: "breastplate", en: "breastplate of righteousness", es: "coraza de justicia", emoji: "🛡️", image: "/armor/breastplate.svg" },
-  { id: "shield", en: "shield of faith", es: "escudo de la fe", emoji: "🔰", image: "/armor/shield.svg" },
-  { id: "sword", en: "sword of the Spirit", es: "espada del Espíritu", emoji: "⚔️", image: "/armor/sword.svg" },
-  { id: "belt", en: "belt of truth", es: "cinturón de verdad", emoji: "🔗", image: "/armor/belt.svg" },
-  { id: "shoes", en: "shoes of peace", es: "zapatos de paz", emoji: "👟", image: "/armor/boots.svg" },
+  { id: "helmet", en: "helmet of salvation", es: "casco de salvación", image: "/armor/helmet.svg" },
+  { id: "breastplate", en: "breastplate of righteousness", es: "coraza de justicia", image: "/armor/breastplate.svg" },
+  { id: "shield", en: "shield of faith", es: "escudo de la fe", image: "/armor/shield.svg" },
+  { id: "sword", en: "sword of the Spirit", es: "espada del Espíritu", image: "/armor/sword.svg" },
+  { id: "belt", en: "belt of truth", es: "cinturón de verdad", image: "/armor/belt.svg" },
+  { id: "shoes", en: "shoes of peace", es: "zapatos de paz", image: "/armor/boots.svg" },
 ];
 
 const TRIVIA_QUESTIONS = [
@@ -294,7 +293,7 @@ export default function GamePage() {
       <div className="min-h-[80vh] flex items-center justify-center p-4">
         <Card className="max-w-md w-full text-center space-y-6">
           <div className="flex justify-center">
-            <GameIcon gameId={gameId} emoji={currentGame?.icon || "🎮"} image={currentGame?.image} color={currentGame?.color || "#7C43BD"} size={80} />
+            <GameIcon gameId={gameId} image={currentGame?.image || "/games/memory-bible.svg"} color={currentGame?.color || "#7C43BD"} size={80} />
           </div>
           <h2 className="text-2xl font-bold text-purple-900">{current.title}</h2>
           <p className="text-purple-600">{current.desc}</p>
@@ -311,7 +310,9 @@ export default function GamePage() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center p-4">
         <Card className="max-w-md w-full text-center space-y-6">
-          <div className="text-6xl">🎉</div>
+          <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-amber-300 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/30">
+            <PartyPopper size={44} className="text-white" />
+          </div>
           <h2 className="text-2xl font-bold text-purple-900">¡Victoria!</h2>
           <p className="text-3xl font-bold text-amber-500">+{score || armorScore || triviaScore * 10} XP</p>
           {gameId === "memory-bible" && <p className="text-purple-500">Movimientos: {memoramaMoves}</p>}
@@ -328,7 +329,9 @@ export default function GamePage() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center p-4">
         <Card className="max-w-md w-full text-center space-y-6">
-          <div className="text-6xl">💪</div>
+          <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-xl shadow-blue-500/30">
+            <Dumbbell size={44} className="text-white" />
+          </div>
           <h2 className="text-2xl font-bold text-purple-900">¡Sigue intentando!</h2>
           <p className="text-purple-600 italic">&ldquo;The righteous falls seven times and rises again.&rdquo;</p>
           <p className="text-purple-500">— Proverbs 24:16</p>
@@ -445,14 +448,14 @@ export default function GamePage() {
           </div>
           {result !== null && (
             <p className={`text-sm font-bold ${result ? "text-green-600" : "text-orange-600"}`}>
-              {result ? "✓ ¡Correcto! +10 XP" : `✗ "${currentArmorPiece.en}"`}
+              {result ? <><Check size={16} /> ¡Correcto! +10 XP</> : <><X size={16} /> "{currentArmorPiece.en}"</>}
               <button onClick={() => speak(currentArmorPiece.en)} className="ml-2 text-purple-500 hover:text-purple-700 inline-flex"><Volume2 size={16} /></button>
             </p>
           )}
         </Card>
 
         <Card className="bg-amber-50 border-amber-200">
-          <p className="text-sm font-bold text-amber-800 mb-2">🛡️ Efesios 6:13-17</p>
+          <p className="text-sm font-bold text-amber-800 mb-2 flex items-center gap-1.5"><Shield size={16} /> Efesios 6:13-17</p>
           <p className="text-xs text-amber-700 italic">&ldquo;Put on the full armor of God, so that you can take your stand against the devil&rsquo;s schemes.&rdquo;</p>
         </Card>
       </div>
@@ -478,7 +481,9 @@ export default function GamePage() {
         </div>
 
         <Card className="text-center space-y-6 py-10">
-          <div className="text-4xl">⚡</div>
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-amber-300 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
+            <Zap size={32} className="text-white" />
+          </div>
           <p className="text-xl font-bold text-purple-900">{q.q}</p>
           <div className="grid grid-cols-2 gap-3 max-w-md mx-auto">
             {q.opts.map((opt) => {
@@ -495,7 +500,7 @@ export default function GamePage() {
           </div>
           {result !== null && (
             <p className={`text-sm font-bold ${result ? "text-green-600" : "text-orange-600"}`}>
-              {result ? "✓ ¡Correcto! +10 XP" : `✗ "${q.a}"`}
+              {result ? <><Check size={16} /> ¡Correcto! +10 XP</> : <><X size={16} /> "{q.a}"</>}
             </p>
           )}
         </Card>

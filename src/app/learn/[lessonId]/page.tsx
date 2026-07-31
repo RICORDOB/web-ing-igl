@@ -9,7 +9,7 @@ import Card from "@/components/ui/Card";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { useSound } from "@/lib/useSound";
 import { useSpeech } from "@/lib/useSpeech";
-import { Check, X, ArrowLeft, ArrowRight, Volume2 } from "lucide-react";
+import { Check, X, ArrowLeft, ArrowRight, Volume2, PartyPopper, ThumbsUp, Dumbbell, BookOpen } from "lucide-react";
 
 export default function LessonPage() {
   const params = useParams();
@@ -113,7 +113,17 @@ export default function LessonPage() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center p-4">
         <Card className="max-w-md w-full text-center space-y-6">
-          <div className="text-6xl">{pct >= 80 ? "🎉" : pct >= 50 ? "👍" : "💪"}</div>
+          <div className="flex justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-amber-300 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/30 animate-float">
+              {pct >= 80 ? (
+                <PartyPopper size={44} className="text-white" />
+              ) : pct >= 50 ? (
+                <ThumbsUp size={44} className="text-white" />
+              ) : (
+                <Dumbbell size={44} className="text-white" />
+              )}
+            </div>
+          </div>
           <h2 className="text-2xl font-bold text-purple-900">
             {pct >= 80 ? "¡Excelente!" : pct >= 50 ? "¡Buen trabajo!" : "¡Sigue intentando!"}
           </h2>
@@ -298,14 +308,16 @@ export default function LessonPage() {
             {currentExerciseIdx < lesson.exercises.length - 1 ? (
               <>Siguiente <ArrowRight size={18} /></>
             ) : (
-              <>Ver resultados 🎉</>
+              <>Ver resultados</>
             )}
           </Button>
         </div>
       )}
 
       <Card className="bg-purple-50">
-        <p className="text-sm font-bold text-purple-800 mb-2">📖 Vocabulario de la lección:</p>
+        <p className="text-sm font-bold text-purple-800 mb-2 flex items-center gap-1.5">
+          <BookOpen size={16} /> Vocabulario de la lección:
+        </p>
         <div className="flex flex-wrap gap-2">
           {lesson.vocabulary.map((v, i) => (
             <button

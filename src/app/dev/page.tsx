@@ -13,7 +13,7 @@ import { useSound } from "@/lib/useSound";
 import AvatarImage from "@/components/AvatarImage";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import { Terminal, Trash2, Volume2, RefreshCw, Bug, Eye, EyeOff } from "lucide-react";
+import { Terminal, Trash2, Volume2, RefreshCw, Bug, Eye, EyeOff, Check, X, Volume } from "lucide-react";
 
 export default function DevPage() {
   const router = useRouter();
@@ -83,7 +83,7 @@ export default function DevPage() {
     if ("Notification" in window) {
       Notification.requestPermission().then((perm) => {
         if (perm === "granted") {
-          new Notification("📖 Cristo English", {
+          new Notification("Cristo English", {
             body: "¡Tiempo de estudiar! Dios te espera.",
             icon: "/icons/icon-192.svg",
           });
@@ -188,7 +188,7 @@ export default function DevPage() {
               onClick={() => play(s)}
               className="px-4 py-2 rounded-xl bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 font-medium hover:bg-purple-200 transition-all active:scale-95"
             >
-              🔊 {s}
+              <Volume size={16} /> {s}
             </button>
           ))}
         </div>
@@ -263,11 +263,11 @@ export default function DevPage() {
         <h2 className="font-bold text-purple-900 mb-4">Info del Sistema</h2>
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div><span className="text-purple-500">User Agent:</span> <span className="text-purple-900 text-xs break-all">{navigator.userAgent}</span></div>
-          <div><span className="text-purple-500">Speech API:</span> {typeof window !== "undefined" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) ? "✅" : "❌"}</div>
-          <div><span className="text-purple-500">Service Worker:</span> {"serviceWorker" in navigator ? "✅" : "❌"}</div>
-          <div><span className="text-purple-500">Notification:</span> {"Notification" in window ? "✅" : "❌"}</div>
+          <div><span className="text-purple-500">Speech API:</span> {typeof window !== "undefined" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) ? <Check size={16} className="inline text-green-500" /> : <X size={16} className="inline text-red-500" />}</div>
+          <div><span className="text-purple-500">Service Worker:</span> {"serviceWorker" in navigator ? <Check size={16} className="inline text-green-500" /> : <X size={16} className="inline text-red-500" />}</div>
+          <div><span className="text-purple-500">Notification:</span> {"Notification" in window ? <Check size={16} className="inline text-green-500" /> : <X size={16} className="inline text-red-500" />}</div>
           <div><span className="text-purple-500">LocalStorage:</span> {typeof window !== "undefined" ? `${new Blob([JSON.stringify(localStorage)]).size} bytes` : "—"}</div>
-          <div><span className="text-purple-500">Online:</span> {typeof navigator !== "undefined" ? (navigator.onLine ? "✅" : "❌") : "—"}</div>
+          <div><span className="text-purple-500">Online:</span> {typeof navigator !== "undefined" ? (navigator.onLine ? <Check size={16} className="inline text-green-500" /> : <X size={16} className="inline text-red-500" />) : "—"}</div>
         </div>
       </Card>
 

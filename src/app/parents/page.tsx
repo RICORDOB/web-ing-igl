@@ -22,6 +22,12 @@ import {
   Heart,
   Star,
   ChevronRight,
+  Users,
+  PartyPopper,
+  Check,
+  Lightbulb,
+  Calendar,
+  Handshake,
 } from "lucide-react";
 
 export default function ParentsPage() {
@@ -64,8 +70,8 @@ export default function ParentsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-purple-900">
-            👨‍👩‍👧 Panel para Padres
+          <h1 className="text-3xl font-bold text-purple-900 flex items-center gap-2">
+            <Users size={28} className="text-purple-600" /> Panel para Padres
           </h1>
           <p className="text-purple-500">
             Progreso educativo de {progress.username}
@@ -76,7 +82,9 @@ export default function ParentsPage() {
 
       {/* Hero Card */}
       <Card className="bg-gradient-to-br from-purple-900 to-purple-800 text-white border-0 overflow-hidden relative">
-        <div className="absolute top-0 right-0 text-8xl opacity-10">✝️</div>
+        <div className="absolute top-0 right-0 opacity-10">
+          <img src="/landing/cross.svg" alt="" className="w-32 h-32 object-contain" />
+        </div>
         <div className="flex items-center gap-6 relative z-10">
           <AvatarViewer avatarId={progress.avatarId} size="xl" />
           <div className="flex-1">
@@ -141,7 +149,7 @@ export default function ParentsPage() {
           <ProgressBar value={weeklyProgress} max={weeklyGoal} color="bg-amber-500" size="md" />
           <p className="text-xs text-purple-500 text-center">
             {weeklyProgress >= weeklyGoal
-              ? "🎉 ¡Meta semanal completada!"
+              ? <span className="flex items-center justify-center gap-1"><PartyPopper size={14} className="text-amber-500" /> ¡Meta semanal completada!</span>
               : `Faltan ${weeklyGoal - weeklyProgress} lecciones para cumplir la meta`}
           </p>
         </Card>
@@ -156,7 +164,7 @@ export default function ParentsPage() {
         <div className="space-y-3">
           {completedLessons.slice(-5).reverse().map((lesson) => (
             <Card key={lesson.id} className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600">✓</div>
+              <div className="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600"><Check size={20} /></div>
               <div className="flex-1">
                 <p className="font-bold text-sm text-purple-900">{lesson.titleEn}</p>
                 <p className="text-xs text-purple-500">{lesson.topic}</p>
@@ -200,15 +208,17 @@ export default function ParentsPage() {
       {/* Tips */}
       <Card className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-purple-200 dark:border-purple-800">
         <div className="flex items-start gap-4">
-          <div className="text-3xl">💡</div>
+          <div className="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-500 shrink-0">
+            <Lightbulb size={24} />
+          </div>
           <div>
             <h3 className="font-bold text-purple-900 dark:text-purple-200">Consejos para Padres</h3>
-            <ul className="mt-2 text-sm text-purple-600 dark:text-purple-400 space-y-1">
-              <li>🎯 Celebra cada insignia con tu hijo</li>
-              <li>📅 Revisa la racha diaria para motivar consistencia</li>
-              <li>🙌 Practica juntos: pídele que te enseñe lo que aprendió</li>
-              <li>📖 Pregúntale por el versículo del día</li>
-              <li>🏆 Establece metas semanales alcanzables</li>
+            <ul className="mt-2 text-sm text-purple-600 dark:text-purple-400 space-y-1.5">
+              <li className="flex items-start gap-2"><Target size={16} className="text-purple-500 mt-0.5 shrink-0" /> Celebra cada insignia con tu hijo</li>
+              <li className="flex items-start gap-2"><Calendar size={16} className="text-purple-500 mt-0.5 shrink-0" /> Revisa la racha diaria para motivar consistencia</li>
+              <li className="flex items-start gap-2"><Handshake size={16} className="text-purple-500 mt-0.5 shrink-0" /> Practica juntos: pídele que te enseñe lo que aprendió</li>
+              <li className="flex items-start gap-2"><BookOpen size={16} className="text-purple-500 mt-0.5 shrink-0" /> Pregúntale por el versículo del día</li>
+              <li className="flex items-start gap-2"><Trophy size={16} className="text-purple-500 mt-0.5 shrink-0" /> Establece metas semanales alcanzables</li>
             </ul>
           </div>
         </div>

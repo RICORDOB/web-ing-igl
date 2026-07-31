@@ -122,8 +122,8 @@ export default function ImageUploader({ onImageReady, currentImage }: ImageUploa
       )}
 
       {confirmed && (
-        <div className="rounded-xl bg-green-50 border border-green-200 p-3 text-sm text-green-700 text-center font-medium">
-          ✅ Imagen guardada como avatar personalizado
+        <div className="rounded-xl bg-green-50 border border-green-200 p-3 text-sm text-green-700 text-center font-medium flex items-center justify-center gap-1.5">
+          <Check size={16} /> Imagen guardada como avatar personalizado
         </div>
       )}
     </div>

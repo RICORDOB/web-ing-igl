@@ -11,7 +11,7 @@ import ProgressBar from "@/components/ui/ProgressBar";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import BadgeIcon from "@/components/BadgeIcon";
-import { Trophy, Flame, Target, BookOpen, Zap } from "lucide-react";
+import { Trophy, Flame, Target, BookOpen, Zap, Medal, Swords, Check, Lock, CheckCircle2 } from "lucide-react";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function DashboardPage() {
         <AvatarViewer avatarId={progress.avatarId} size="xl" />
         <div className="flex-1">
           <h1 className="text-2xl font-bold text-purple-900">
-            ¡Hola, {progress.username}! 🙌
+            ¡Hola, {progress.username}!
           </h1>
           <p className="text-purple-500 font-medium">{levelInfo.title}</p>
           <div className="mt-2 max-w-xs">
@@ -89,10 +89,10 @@ export default function DashboardPage() {
           <Zap size={18} /> Juegos
         </Button>
         <Button variant="secondary" onClick={() => router.push("/badges")}>
-          🏅 Insignias
+          <Medal size={18} /> Insignias
         </Button>
         <Button variant="secondary" onClick={() => router.push("/arena")}>
-          🏟️ Arena
+          <Swords size={18} /> Arena
         </Button>
       </div>
 
@@ -127,25 +127,25 @@ export default function DashboardPage() {
               >
                 {completed && (
                   <div className="absolute top-3 right-3 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-xs">✓</span>
+                    <Check size={14} className="text-white" />
                   </div>
                 )}
                 {locked && (
                   <div className="absolute top-3 right-3">
-                    <span className="text-lg">🔒</span>
+                    <Lock size={18} className="text-gray-400" />
                   </div>
                 )}
                 <div className="flex items-start gap-3">
                   <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                       completed
-                        ? "bg-green-100"
+                        ? "bg-green-100 text-green-600"
                         : locked
-                        ? "bg-gray-100"
-                        : "bg-purple-100"
+                        ? "bg-gray-100 text-gray-400"
+                        : "bg-purple-100 text-purple-600"
                     }`}
                   >
-                    {completed ? "✅" : locked ? "🔒" : "📖"}
+                    {completed ? <CheckCircle2 size={20} /> : locked ? <Lock size={18} /> : <BookOpen size={20} />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className={`font-semibold text-sm ${completed ? "text-green-700" : "text-purple-900"}`}>

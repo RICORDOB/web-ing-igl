@@ -9,7 +9,7 @@ import lessons from "@/data/lessons";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { useSpeech } from "@/lib/useSpeech";
-import { Send, Mic, MicOff, Users, LogOut, Volume2 } from "lucide-react";
+import { Send, Mic, MicOff, Users, LogOut, Volume2, Crown, User, MessageCircle, Swords, Check, X } from "lucide-react";
 
 interface Player {
   name: string;
@@ -225,8 +225,8 @@ export default function ArenaRoomPage() {
                     : "bg-gray-50 border border-gray-200"
                 }`}
               >
-                <span className="text-lg">
-                  {p.name === progress.username ? "👑" : "👤"}
+                <span className="text-lg flex items-center justify-center">
+                  {p.name === progress.username ? <Crown size={20} className="text-amber-500" /> : <User size={20} className="text-purple-400" />}
                 </span>
                 <div>
                   <p className="text-sm font-bold text-purple-900">{p.name}</p>
@@ -238,7 +238,9 @@ export default function ArenaRoomPage() {
 
           {!gameActive ? (
             <Card className="text-center py-12 space-y-4">
-              <div className="text-6xl">🏟️</div>
+              <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center shadow-xl shadow-purple-500/30">
+                <Swords size={40} className="text-white" />
+              </div>
               <h2 className="text-xl font-bold text-purple-900">
                 {questionIndex > 0 ? "¡Batalla Completada!" : "Esperando jugadores..."}
               </h2>
@@ -249,7 +251,7 @@ export default function ArenaRoomPage() {
               </p>
               {isHost && playerCount >= 1 && (
                 <Button variant="gold" size="lg" onClick={startGame}>
-                  ¡Iniciar Batalla! ⚔️
+                  ¡Iniciar Batalla!
                 </Button>
               )}
               {!isHost && playerCount >= 1 && (
@@ -303,7 +305,7 @@ export default function ArenaRoomPage() {
 
               {result !== null && (
                 <div className={`text-center p-3 rounded-xl ${result ? "bg-green-50 text-green-700" : "bg-orange-50 text-orange-700"} font-bold`}>
-                  {result ? "✓ ¡Correcto! +10 pts" : `✗ Respuesta: "${currentQuestion.answer}"`}
+                  {result ? <><Check size={18} className="inline" /> ¡Correcto! +10 pts</> : <><X size={18} className="inline" /> Respuesta: "{currentQuestion.answer}"</>}
                 </div>
               )}
             </Card>
@@ -313,7 +315,7 @@ export default function ArenaRoomPage() {
         {/* Chat Sidebar */}
         <Card className="flex flex-col h-[500px]">
           <h3 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
-            <span>💬</span> Chat en vivo
+            <MessageCircle size={18} className="text-purple-500" /> Chat en vivo
           </h3>
 
           <div className="flex-1 overflow-y-auto space-y-2 mb-3">

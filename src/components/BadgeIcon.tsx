@@ -4,7 +4,6 @@ interface BadgeIconProps {
   badge: {
     id: string;
     name: string;
-    icon: string;
     image?: string;
     tier: string;
   };

@@ -4,7 +4,25 @@ import Link from "next/link";
 import { useGame } from "@/context/GameContext";
 import AvatarViewer from "@/components/AvatarViewer";
 import { getLevel } from "@/lib/gamification";
-import { Flame, Trophy, LogOut, User, Menu, X, Moon, Sun } from "lucide-react";
+import {
+  Flame,
+  Trophy,
+  LogOut,
+  User,
+  Menu,
+  X,
+  Moon,
+  Sun,
+  BookOpen,
+  Map,
+  Gamepad2,
+  Bot,
+  Swords,
+  Users,
+  Settings,
+  Medal,
+  Smile,
+} from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -23,7 +41,9 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <span className="text-2xl">📖</span>
+            <span className="text-purple-700">
+              <BookOpen size={24} />
+            </span>
             <span className="text-lg font-bold text-purple-900 hidden sm:block">
               Cristo English
             </span>
@@ -37,12 +57,12 @@ export default function Navbar() {
           )}
 
           <div className="hidden md:flex items-center gap-6">
-            <NavLink href="/dashboard" icon="🗺️" label="Lecciones" />
-            <NavLink href="/games" icon="🎮" label="Juegos" />
-            <NavLink href="/ai" icon="🤖" label="IA" />
-            <NavLink href="/arena" icon="🏟️" label="Arena" />
-            <NavLink href="/parents" icon="👨‍👩‍👧" label="Padres" />
-            <NavLink href="/dev" icon="⚙️" label="Dev" />
+            <NavLink href="/dashboard" icon={<Map size={16} />} label="Lecciones" />
+            <NavLink href="/games" icon={<Gamepad2 size={16} />} label="Juegos" />
+            <NavLink href="/ai" icon={<Bot size={16} />} label="IA" />
+            <NavLink href="/arena" icon={<Swords size={16} />} label="Arena" />
+            <NavLink href="/parents" icon={<Users size={16} />} label="Padres" />
+            <NavLink href="/dev" icon={<Settings size={16} />} label="Dev" />
 
             <div className="flex items-center gap-3 pl-4 border-l border-purple-100">
               <div className="text-right">
@@ -85,15 +105,15 @@ export default function Navbar() {
 
       {mobileOpen && (
         <div className="md:hidden border-t border-purple-100 bg-white px-4 py-4 space-y-3 animate-slide-up">
-          <MobileNavLink href="/dashboard" icon="🗺️" label="Lecciones" />
-          <MobileNavLink href="/games" icon="🎮" label="Juegos" />
-          <MobileNavLink href="/ai" icon="🤖" label="IA" />
-          <MobileNavLink href="/arena" icon="🏟️" label="Arena" />
-          <MobileNavLink href="/parents" icon="👨‍👩‍👧" label="Panel Padres" />
-          <MobileNavLink href="/avatar" icon="😇" label="Mi Avatar" />
-          <MobileNavLink href="/badges" icon="🏅" label="Insignias" />
-          <MobileNavLink href="/dev" icon="⚙️" label="Dev" />
-          <MobileNavLink href="/profile" icon="👤" label="Perfil" />
+          <MobileNavLink href="/dashboard" icon={<Map size={18} />} label="Lecciones" />
+          <MobileNavLink href="/games" icon={<Gamepad2 size={18} />} label="Juegos" />
+          <MobileNavLink href="/ai" icon={<Bot size={18} />} label="IA" />
+          <MobileNavLink href="/arena" icon={<Swords size={18} />} label="Arena" />
+          <MobileNavLink href="/parents" icon={<Users size={18} />} label="Panel Padres" />
+          <MobileNavLink href="/avatar" icon={<Smile size={18} />} label="Mi Avatar" />
+          <MobileNavLink href="/badges" icon={<Medal size={18} />} label="Insignias" />
+          <MobileNavLink href="/dev" icon={<Settings size={18} />} label="Dev" />
+          <MobileNavLink href="/profile" icon={<User size={18} />} label="Perfil" />
           <button
             onClick={logout}
             className="flex w-full items-center gap-2 rounded-xl px-4 py-3 text-red-500 hover:bg-red-50"
@@ -106,25 +126,41 @@ export default function Navbar() {
   );
 }
 
-function NavLink({ href, icon, label }: { href: string; icon: string; label: string }) {
+function NavLink({
+  href,
+  icon,
+  label,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+}) {
   return (
     <Link
       href={href}
       className="flex items-center gap-1.5 text-sm font-medium text-purple-600 hover:text-purple-900 transition-colors"
     >
-      <span>{icon}</span>
+      {icon}
       {label}
     </Link>
   );
 }
 
-function MobileNavLink({ href, icon, label }: { href: string; icon: string; label: string }) {
+function MobileNavLink({
+  href,
+  icon,
+  label,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+}) {
   return (
     <Link
       href={href}
       className="flex items-center gap-2 rounded-xl px-4 py-3 text-purple-700 hover:bg-purple-50 font-medium"
     >
-      <span>{icon}</span>
+      {icon}
       {label}
     </Link>
   );

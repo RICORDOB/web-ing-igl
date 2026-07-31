@@ -1,13 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  Star,
+  Sparkles,
+  PartyPopper,
+  Heart,
+  Trophy,
+  Crown,
+  Gift,
+  ThumbsUp,
+} from "lucide-react";
 
-const EMOJIS = ["✨", "🌟", "⭐", "💫", "🎉", "🎊", "🙌", "👏"];
-const COLORS = ["bg-purple-500", "bg-amber-400", "bg-pink-500", "bg-blue-500", "bg-green-500", "bg-red-400"];
+const PARTICLES = [
+  Star,
+  Sparkles,
+  PartyPopper,
+  Heart,
+  Trophy,
+  Crown,
+  Gift,
+  ThumbsUp,
+];
+const COLORS = ["text-purple-500", "text-amber-400", "text-pink-500", "text-blue-500", "text-green-500", "text-red-400"];
 
 interface Particle {
   id: number;
-  emoji: string;
+  icon: React.ComponentType<{ size?: number | string; className?: string }>;
+  color: string;
   x: number;
   y: number;
   delay: number;
@@ -33,7 +53,8 @@ export default function Celebration({ show, type = "complete", onComplete }: Cel
     const count = type === "levelup" ? 30 : type === "badge" ? 20 : 12;
     const newParticles: Particle[] = Array.from({ length: count }, (_, i) => ({
       id: i,
-      emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+      icon: PARTICLES[Math.floor(Math.random() * PARTICLES.length)],
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
       x: Math.random() * 100,
       y: -10 - Math.random() * 20,
       delay: Math.random() * 0.8,
@@ -55,21 +76,23 @@ export default function Celebration({ show, type = "complete", onComplete }: Cel
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="absolute animate-confetti text-center"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            fontSize: `${p.size}px`,
-            animationDelay: `${p.delay}s`,
-            animationDuration: `${p.duration}s`,
-          }}
-        >
-          {p.emoji}
-        </div>
-      ))}
+      {particles.map((p) => {
+        const Icon = p.icon;
+        return (
+          <div
+            key={p.id}
+            className="absolute animate-confetti text-center"
+            style={{
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              animationDelay: `${p.delay}s`,
+              animationDuration: `${p.duration}s`,
+            }}
+          >
+            <Icon size={p.size} className={p.color} />
+          </div>
+        );
+      })}
     </div>
   );
 }

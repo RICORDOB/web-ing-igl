@@ -5,7 +5,6 @@ export interface Avatar {
   description: string;
   color: string;
   gradient: string;
-  icon: string;
   image: string;
   unlockCondition: string;
   unlockLevel: number;
@@ -20,7 +19,6 @@ export const avatars: Avatar[] = [
     description: "Valiente y fuerte como un león",
     color: "#FF8F00",
     gradient: "from-amber-500 to-orange-600",
-    icon: "🦁",
     image: "/avatars/lion-of-judah.svg",
     unlockCondition: "Completar la primera lección",
     unlockLevel: 0,
@@ -33,7 +31,6 @@ export const avatars: Avatar[] = [
     description: "El pastor que venció gigantes",
     color: "#1E88E5",
     gradient: "from-blue-500 to-blue-700",
-    icon: "⚔️",
     image: "/avatars/david.svg",
     unlockCondition: "Completar 5 lecciones",
     unlockLevel: 1,
@@ -46,7 +43,6 @@ export const avatars: Avatar[] = [
     description: "Princesa valiente y sabia",
     color: "#E91E63",
     gradient: "from-pink-500 to-rose-600",
-    icon: "👑",
     image: "/avatars/esther.svg",
     unlockCondition: "Completar 10 lecciones",
     unlockLevel: 2,
@@ -59,7 +55,6 @@ export const avatars: Avatar[] = [
     description: "Fuerza sobrenatural",
     color: "#795548",
     gradient: "from-amber-700 to-brown-800",
-    icon: "💪",
     image: "/avatars/samson.svg",
     unlockCondition: "Obtener 3 insignias",
     unlockLevel: 3,
@@ -72,7 +67,6 @@ export const avatars: Avatar[] = [
     description: "Constructor del arca",
     color: "#4CAF50",
     gradient: "from-green-500 to-emerald-700",
-    icon: "🌊",
     image: "/avatars/noah.svg",
     unlockCondition: "Completar 20 lecciones",
     unlockLevel: 4,
@@ -85,7 +79,6 @@ export const avatars: Avatar[] = [
     description: "Aventurero del mar",
     color: "#00BCD4",
     gradient: "from-cyan-400 to-cyan-700",
-    icon: "🐋",
     image: "/avatars/jonah.svg",
     unlockCondition: "Mantener racha de 7 días",
     unlockLevel: 5,
@@ -98,7 +91,6 @@ export const avatars: Avatar[] = [
     description: "Pura y llena de paz",
     color: "#9E9E9E",
     gradient: "from-gray-200 to-gray-400",
-    icon: "🕊️",
     image: "/avatars/dove.svg",
     unlockCondition: "Completar 30 lecciones",
     unlockLevel: 6,
@@ -111,7 +103,6 @@ export const avatars: Avatar[] = [
     description: "Profeta de fuego",
     color: "#FF5722",
     gradient: "from-red-500 to-orange-600",
-    icon: "⚡",
     image: "/avatars/elijah.svg",
     unlockCondition: "Obtener todas las insignias",
     unlockLevel: 7,

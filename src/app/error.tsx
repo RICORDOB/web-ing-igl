@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CircleAlert } from "lucide-react";
 
 export default function Error({
   error,
@@ -23,7 +24,9 @@ export default function Error({
   return (
     <div className="flex min-h-screen items-center justify-center bg-white p-8">
       <div className="max-w-2xl w-full space-y-4">
-        <div className="text-6xl text-center">😕</div>
+        <div className="flex justify-center">
+          <CircleAlert size={64} className="text-purple-300" />
+        </div>
         <h1 className="text-2xl font-bold text-purple-900 text-center">Algo salió mal</h1>
         <p className="text-gray-600 text-sm text-center">
           Ocurrió un error inesperado. Intenta recargar la página.

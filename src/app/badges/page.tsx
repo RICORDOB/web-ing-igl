@@ -7,6 +7,7 @@ import { badges } from "@/data/badges";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import BadgeIcon from "@/components/BadgeIcon";
+import { Medal, HelpCircle, Check } from "lucide-react";
 
 export default function BadgesPage() {
   const router = useRouter();
@@ -32,7 +33,9 @@ export default function BadgesPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 space-y-8">
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-purple-900">🏅 Insignias</h1>
+        <h1 className="text-3xl font-bold text-purple-900 flex items-center justify-center gap-2">
+          <Medal size={30} className="text-amber-500" /> Insignias
+        </h1>
         <p className="text-purple-500">
           {progress.badges.length} de {badges.length} desbloqueadas
         </p>
@@ -57,7 +60,7 @@ export default function BadgesPage() {
                   >
                     {!earned && (
                       <div className="absolute inset-0 rounded-2xl bg-white/50 flex items-center justify-center z-10">
-                        <span className="text-5xl opacity-50">❓</span>
+                        <HelpCircle size={48} className="text-purple-300" />
                       </div>
                     )}
                     <div className="flex justify-center">
@@ -66,7 +69,7 @@ export default function BadgesPage() {
                     <p className="font-bold text-sm text-purple-900">{badge.name}</p>
                     <p className="text-xs text-purple-500">{badge.description}</p>
                     <p className="text-xs text-purple-400 mt-1 italic">
-                      {earned ? "✓ Desbloqueada" : badge.condition}
+                      {earned ? <span className="inline-flex items-center gap-1"><Check size={14} /> Desbloqueada</span> : badge.condition}
                     </p>
                   </Card>
                 );

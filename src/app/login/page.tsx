@@ -11,6 +11,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
+import { Mail, Rocket, Hand, Smile, Gamepad2, Library, Trophy } from "lucide-react";
 
 type LoginStep =
   | "welcome"
@@ -107,7 +108,13 @@ export default function LoginPage() {
   const renderWelcome = () => (
     <div className="animate-slide-up text-center space-y-8">
       <div className="space-y-4">
-        <div className="text-6xl animate-float">📖</div>
+        <div className="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-amber-300 to-orange-500 flex items-center justify-center shadow-xl shadow-amber-500/30 ring-4 ring-white animate-float">
+          <img
+            src="/landing/book.svg"
+            alt="Cristo English"
+            className="w-12 h-12 object-contain drop-shadow-xl"
+          />
+        </div>
         <h1 className="text-4xl font-bold text-purple-900">Cristo English</h1>
         <p className="text-lg text-purple-600">
           Aprende inglés mientras exploras la Biblia
@@ -116,15 +123,21 @@ export default function LoginPage() {
 
       <div className="grid grid-cols-3 gap-4 text-center">
         <div className="rounded-2xl bg-white p-4 shadow-md">
-          <div className="text-3xl mb-1">🎮</div>
+          <div className="mx-auto w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-1">
+            <Gamepad2 size={24} />
+          </div>
           <p className="text-xs font-medium text-purple-700">Juegos</p>
         </div>
         <div className="rounded-2xl bg-white p-4 shadow-md">
-          <div className="text-3xl mb-1">📚</div>
+          <div className="mx-auto w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-500 mb-1">
+            <Library size={24} />
+          </div>
           <p className="text-xs font-medium text-purple-700">Lecciones</p>
         </div>
         <div className="rounded-2xl bg-white p-4 shadow-md">
-          <div className="text-3xl mb-1">🏆</div>
+          <div className="mx-auto w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-500 mb-1">
+            <Trophy size={24} />
+          </div>
           <p className="text-xs font-medium text-purple-700">Logros</p>
         </div>
       </div>
@@ -138,7 +151,7 @@ export default function LoginPage() {
 
       <div className="space-y-3">
         <Button size="lg" onClick={() => setStep("register")} className="w-full">
-          Crear cuenta con Email 📧
+          <Mail size={18} /> Crear cuenta con Email
         </Button>
         <Button
           variant="secondary"
@@ -169,7 +182,13 @@ export default function LoginPage() {
   const renderRegister = () => (
     <div className="animate-slide-up space-y-6">
       <div className="text-center space-y-2">
-        <div className="text-5xl">✝️</div>
+        <div className="mx-auto w-16 h-16 rounded-full bg-purple-50 flex items-center justify-center">
+          <img
+            src="/landing/cross.svg"
+            alt=""
+            className="w-8 h-8 object-contain"
+          />
+        </div>
         <h2 className="text-2xl font-bold text-purple-900">Crear cuenta</h2>
         <p className="text-purple-500">Regístrate para guardar tu progreso</p>
       </div>
@@ -207,7 +226,7 @@ export default function LoginPage() {
 
       <div className="space-y-3">
         <Button size="lg" onClick={handleEmailRegister} disabled={loading} className="w-full">
-          {loading ? "Creando cuenta..." : "Crear cuenta 🎉"}
+          {loading ? "Creando cuenta..." : "Crear cuenta"}
         </Button>
         <Button variant="ghost" size="sm" onClick={() => { setStep("welcome"); setError(""); }} className="w-full">
           ← Volver
@@ -219,7 +238,9 @@ export default function LoginPage() {
   const renderLogin = () => (
     <div className="animate-slide-up space-y-6">
       <div className="text-center space-y-2">
-        <div className="text-5xl">👋</div>
+        <div className="mx-auto w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
+          <Hand size={28} />
+        </div>
         <h2 className="text-2xl font-bold text-purple-900">Iniciar sesión</h2>
         <p className="text-purple-500">Bienvenido de nuevo</p>
       </div>
@@ -249,7 +270,7 @@ export default function LoginPage() {
 
       <div className="space-y-3">
         <Button size="lg" onClick={handleEmailLogin} disabled={loading} className="w-full">
-          {loading ? "Entrando..." : "Entrar 🚀"}
+          {loading ? "Entrando..." : "Entrar"}
         </Button>
         <Button variant="ghost" size="sm" onClick={() => { setStep("welcome"); setError(""); }} className="w-full">
           ← Volver
@@ -261,7 +282,9 @@ export default function LoginPage() {
   const renderNameInput = () => (
     <div className="animate-slide-up space-y-8">
       <div className="text-center space-y-2">
-        <div className="text-5xl">😊</div>
+        <div className="mx-auto w-16 h-16 rounded-full bg-green-50 flex items-center justify-center text-green-500">
+          <Smile size={28} />
+        </div>
         <h2 className="text-2xl font-bold text-purple-900">¿Cómo te llamas?</h2>
         <p className="text-purple-500">Modo invitado (sin guardar en la nube)</p>
       </div>
@@ -279,7 +302,7 @@ export default function LoginPage() {
 
       <div className="space-y-3">
         <Button size="lg" onClick={handleNameOnly} disabled={username.trim().length < 2} className="w-full">
-          ¡Empezar! 🎉
+          ¡Empezar!
         </Button>
         <Button variant="ghost" size="sm" onClick={() => { setStep("welcome"); setError(""); }} className="w-full">
           ← Volver
