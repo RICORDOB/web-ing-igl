@@ -6,6 +6,7 @@ export interface Avatar {
   color: string;
   gradient: string;
   icon: string;
+  image: string;
   unlockCondition: string;
   unlockLevel: number;
   dicebearSeed: string;
@@ -20,6 +21,7 @@ export const avatars: Avatar[] = [
     color: "#FF8F00",
     gradient: "from-amber-500 to-orange-600",
     icon: "🦁",
+    image: "/avatars/lion-of-judah.svg",
     unlockCondition: "Completar la primera lección",
     unlockLevel: 0,
     dicebearSeed: "lion-judah",
@@ -32,6 +34,7 @@ export const avatars: Avatar[] = [
     color: "#1E88E5",
     gradient: "from-blue-500 to-blue-700",
     icon: "⚔️",
+    image: "/avatars/david.svg",
     unlockCondition: "Completar 5 lecciones",
     unlockLevel: 1,
     dicebearSeed: "david-shepherd",
@@ -44,6 +47,7 @@ export const avatars: Avatar[] = [
     color: "#E91E63",
     gradient: "from-pink-500 to-rose-600",
     icon: "👑",
+    image: "/avatars/esther.svg",
     unlockCondition: "Completar 10 lecciones",
     unlockLevel: 2,
     dicebearSeed: "queen-esther",
@@ -56,6 +60,7 @@ export const avatars: Avatar[] = [
     color: "#795548",
     gradient: "from-amber-700 to-brown-800",
     icon: "💪",
+    image: "/avatars/samson.svg",
     unlockCondition: "Obtener 3 insignias",
     unlockLevel: 3,
     dicebearSeed: "samson-strong",
@@ -68,6 +73,7 @@ export const avatars: Avatar[] = [
     color: "#4CAF50",
     gradient: "from-green-500 to-emerald-700",
     icon: "🌊",
+    image: "/avatars/noah.svg",
     unlockCondition: "Completar 20 lecciones",
     unlockLevel: 4,
     dicebearSeed: "noah-ark",
@@ -80,6 +86,7 @@ export const avatars: Avatar[] = [
     color: "#00BCD4",
     gradient: "from-cyan-400 to-cyan-700",
     icon: "🐋",
+    image: "/avatars/jonah.svg",
     unlockCondition: "Mantener racha de 7 días",
     unlockLevel: 5,
     dicebearSeed: "jonah-whale",
@@ -92,6 +99,7 @@ export const avatars: Avatar[] = [
     color: "#9E9E9E",
     gradient: "from-gray-200 to-gray-400",
     icon: "🕊️",
+    image: "/avatars/dove.svg",
     unlockCondition: "Completar 30 lecciones",
     unlockLevel: 6,
     dicebearSeed: "dove-peace",
@@ -104,6 +112,7 @@ export const avatars: Avatar[] = [
     color: "#FF5722",
     gradient: "from-red-500 to-orange-600",
     icon: "⚡",
+    image: "/avatars/elijah.svg",
     unlockCondition: "Obtener todas las insignias",
     unlockLevel: 7,
     dicebearSeed: "elijah-fire",

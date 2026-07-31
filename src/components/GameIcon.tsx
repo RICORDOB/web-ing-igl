@@ -3,6 +3,7 @@
 interface GameIconProps {
   gameId: string;
   emoji: string;
+  image?: string;
   color: string;
   size?: number;
 }
@@ -14,7 +15,7 @@ const GAME_GRADIENTS: Record<string, string> = {
   "trivia": "from-red-500 via-rose-600 to-pink-700",
 };
 
-export default function GameIcon({ gameId, emoji, color, size = 64 }: GameIconProps) {
+export default function GameIcon({ gameId, emoji, image, color, size = 64 }: GameIconProps) {
   const s = size;
   const gradient = GAME_GRADIENTS[gameId] || "from-purple-500 to-purple-700";
 
@@ -47,16 +48,26 @@ export default function GameIcon({ gameId, emoji, color, size = 64 }: GameIconPr
         stroke="rgba(255,255,255,0.15)"
         strokeWidth="0.5"
       />
-      {emoji && (
-        <text
-          x="32" y="38"
-          textAnchor="middle"
-          fontSize="28"
-          dominantBaseline="central"
-          filter={`url(#game-shine-${gameId})`}
-        >
-          {emoji}
-        </text>
+      {image ? (
+        <image
+          href={image}
+          x="14" y="14"
+          width="36" height="36"
+          preserveAspectRatio="xMidYMid meet"
+          style={{ filter: `url(#game-shine-${gameId})` }}
+        />
+      ) : (
+        emoji && (
+          <text
+            x="32" y="38"
+            textAnchor="middle"
+            fontSize="28"
+            dominantBaseline="central"
+            filter={`url(#game-shine-${gameId})`}
+          >
+            {emoji}
+          </text>
+        )
       )}
     </svg>
   );

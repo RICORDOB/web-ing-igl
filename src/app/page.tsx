@@ -4,7 +4,19 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useGame } from "@/context/GameContext";
 import Button from "@/components/ui/Button";
+import AvatarImage from "@/components/AvatarImage";
 import { BookOpen, Gamepad2, Trophy, Users, Sparkles } from "lucide-react";
+
+const LANDING_AVATARS = [
+  "lion-of-judah",
+  "david",
+  "esther",
+  "samson",
+  "noah",
+  "jonah",
+  "dove",
+  "elijah",
+];
 
 export default function LandingPage() {
   const router = useRouter();
@@ -20,14 +32,29 @@ export default function LandingPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-purple-900 via-purple-800 to-blue-900 px-4 py-20 text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 text-8xl animate-float">✝️</div>
-          <div className="absolute top-20 right-20 text-6xl animate-float" style={{ animationDelay: "1s" }}>🕊️</div>
-          <div className="absolute bottom-20 left-1/4 text-7xl animate-float" style={{ animationDelay: "2s" }}>🔥</div>
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute top-10 left-10 w-20 h-20 animate-float">
+            <img src="/landing/cross.svg" alt="" className="w-full h-full object-contain" />
+          </div>
+          <div className="absolute top-20 right-20 w-16 h-16 animate-float" style={{ animationDelay: "1s" }}>
+            <img src="/landing/dove.svg" alt="" className="w-full h-full object-contain" />
+          </div>
+          <div className="absolute bottom-20 left-1/4 w-20 h-20 animate-float" style={{ animationDelay: "2s" }}>
+            <img src="/landing/flame.svg" alt="" className="w-full h-full object-contain" />
+          </div>
+          <div className="absolute bottom-24 right-1/4 w-14 h-14 animate-float" style={{ animationDelay: "0.5s" }}>
+            <img src="/landing/book.svg" alt="" className="w-full h-full object-contain" />
+          </div>
         </div>
 
         <div className="relative mx-auto max-w-4xl text-center space-y-8">
-          <div className="text-7xl animate-float">📖</div>
+          <div className="mx-auto w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-gradient-to-br from-amber-300 to-orange-500 flex items-center justify-center shadow-2xl shadow-amber-500/30 ring-8 ring-white/10 animate-float">
+            <img
+              src="/landing/book.svg"
+              alt="Biblia abierta"
+              className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-xl"
+            />
+          </div>
           <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight">
             Cristo English
           </h1>
@@ -41,7 +68,7 @@ export default function LandingPage() {
               size="lg"
               onClick={() => router.push("/login")}
             >
-              ¡Comenzar Gratis! 🚀
+              ¡Comenzar Gratis!
             </Button>
             <Button
               variant="secondary"
@@ -97,13 +124,13 @@ export default function LandingPage() {
             Desbloquea personajes como David, Ester, Sansón y más mientras avanzas
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            {["🦁", "⚔️", "👑", "💪", "🌊", "🐋", "🕊️", "⚡"].map((emoji, i) => (
+            {LANDING_AVATARS.map((avatarId, i) => (
               <div
-                key={i}
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center text-3xl animate-float"
+                key={avatarId}
+                className="animate-float"
                 style={{ animationDelay: `${i * 0.15}s` }}
               >
-                {emoji}
+                <AvatarImage avatarId={avatarId} size="md" threeD />
               </div>
             ))}
           </div>
@@ -128,7 +155,7 @@ export default function LandingPage() {
             size="lg"
             onClick={() => router.push("/login")}
           >
-            ¡Quiero Aprender! 🙌
+            ¡Quiero Aprender!
           </Button>
         </div>
       </section>

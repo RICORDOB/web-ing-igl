@@ -212,8 +212,8 @@ export default function DevPage() {
         <h2 className="font-bold text-purple-900 mb-4">Insignias ({badges.length})</h2>
         <div className="flex flex-wrap gap-2">
           {badges.map((b) => (
-            <div key={b.id} className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-xs font-medium text-amber-700">
-              <span>{b.icon}</span> {b.name}
+            <div key={b.id} className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-xs font-medium text-amber-700">
+              <img src={b.image} alt={b.name} className="w-5 h-5 object-contain" /> {b.name}
             </div>
           ))}
         </div>

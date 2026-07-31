@@ -19,15 +19,16 @@ interface ArmorPiece {
   en: string;
   es: string;
   emoji: string;
+  image: string;
 }
 
 const ARMOR_PIECES: ArmorPiece[] = [
-  { id: "helmet", en: "helmet of salvation", es: "casco de salvación", emoji: "⛑️" },
-  { id: "breastplate", en: "breastplate of righteousness", es: "coraza de justicia", emoji: "🛡️" },
-  { id: "shield", en: "shield of faith", es: "escudo de la fe", emoji: "🔰" },
-  { id: "sword", en: "sword of the Spirit", es: "espada del Espíritu", emoji: "⚔️" },
-  { id: "belt", en: "belt of truth", es: "cinturón de verdad", emoji: "🔗" },
-  { id: "shoes", en: "shoes of peace", es: "zapatos de paz", emoji: "👟" },
+  { id: "helmet", en: "helmet of salvation", es: "casco de salvación", emoji: "⛑️", image: "/armor/helmet.svg" },
+  { id: "breastplate", en: "breastplate of righteousness", es: "coraza de justicia", emoji: "🛡️", image: "/armor/breastplate.svg" },
+  { id: "shield", en: "shield of faith", es: "escudo de la fe", emoji: "🔰", image: "/armor/shield.svg" },
+  { id: "sword", en: "sword of the Spirit", es: "espada del Espíritu", emoji: "⚔️", image: "/armor/sword.svg" },
+  { id: "belt", en: "belt of truth", es: "cinturón de verdad", emoji: "🔗", image: "/armor/belt.svg" },
+  { id: "shoes", en: "shoes of peace", es: "zapatos de paz", emoji: "👟", image: "/armor/boots.svg" },
 ];
 
 const TRIVIA_QUESTIONS = [
@@ -293,7 +294,7 @@ export default function GamePage() {
       <div className="min-h-[80vh] flex items-center justify-center p-4">
         <Card className="max-w-md w-full text-center space-y-6">
           <div className="flex justify-center">
-            <GameIcon gameId={gameId} emoji={currentGame?.icon || "🎮"} color={currentGame?.color || "#7C43BD"} size={80} />
+            <GameIcon gameId={gameId} emoji={currentGame?.icon || "🎮"} image={currentGame?.image} color={currentGame?.color || "#7C43BD"} size={80} />
           </div>
           <h2 className="text-2xl font-bold text-purple-900">{current.title}</h2>
           <p className="text-purple-600">{current.desc}</p>
@@ -418,7 +419,13 @@ export default function GamePage() {
         </div>
 
         <Card className="text-center space-y-6 py-10">
-          <div className="text-7xl animate-float">{currentArmorPiece.emoji}</div>
+          <div className="w-28 h-28 mx-auto rounded-3xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-xl shadow-amber-500/30 animate-float">
+            <img
+              src={currentArmorPiece.image}
+              alt={currentArmorPiece.es}
+              className="w-16 h-16 object-contain drop-shadow-lg"
+            />
+          </div>
           <div>
             <p className="text-lg text-purple-600 font-medium">¿Cómo se dice en inglés?</p>
             <p className="text-3xl font-bold text-purple-900 mt-1">{currentArmorPiece.es}</p>

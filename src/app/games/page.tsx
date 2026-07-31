@@ -55,7 +55,7 @@ export default function GamesHubPage() {
                 </div>
               )}
               <div className="flex items-start gap-4">
-                <GameIcon gameId={game.id} emoji={game.icon} color={game.color} size={64} />
+                <GameIcon gameId={game.id} emoji={game.icon} image={game.image} color={game.color} size={64} />
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-purple-900">{game.title}</h3>
                   <p className="text-sm text-purple-500 mt-1">{game.description}</p>

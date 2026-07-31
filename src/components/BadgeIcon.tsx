@@ -5,35 +5,18 @@ interface BadgeIconProps {
     id: string;
     name: string;
     icon: string;
+    image?: string;
     tier: string;
   };
   size?: number;
   glow?: boolean;
 }
 
-const TIER_COLORS: Record<string, { bg: string; border: string; glow: string }> = {
-  bronze: { bg: "from-amber-600 to-amber-800", border: "#B8860B", glow: "rgba(218,165,32,0.3)" },
-  silver: { bg: "from-slate-400 to-slate-600", border: "#8E8E93", glow: "rgba(142,142,147,0.3)" },
-  gold: { bg: "from-yellow-400 to-yellow-600", border: "#FFD700", glow: "rgba(255,215,0,0.3)" },
+const TIER_COLORS: Record<string, { border: string; glow: string }> = {
+  bronze: { border: "#B8860B", glow: "rgba(218,165,32,0.3)" },
+  silver: { border: "#8E8E93", glow: "rgba(142,142,147,0.3)" },
+  gold: { border: "#FFD700", glow: "rgba(255,215,0,0.3)" },
 };
-
-function getBadgeSymbol(badgeId: string): string {
-  const symbols: Record<string, string> = {
-    "mustard-seed": "🌱",
-    "living-water": "💧",
-    "burning-bush": "🔥",
-    "goliath-slayer": "🗡️",
-    "pentecost": "🕊️",
-    "ark-builder": "🚢",
-    "proverbs-sage": "📜",
-    "faithful-servant": "👑",
-    "tongues-of-fire": "🔤",
-    "overcomer": "🏆",
-    "word-warrior": "⚔️",
-    "crown-of-life": "👑",
-  };
-  return symbols[badgeId] || "⭐";
-}
 
 export default function BadgeIcon({ badge, size = 56, glow = false }: BadgeIconProps) {
   const colors = TIER_COLORS[badge.tier] || TIER_COLORS.bronze;
@@ -68,27 +51,21 @@ export default function BadgeIcon({ badge, size = 56, glow = false }: BadgeIconP
           strokeWidth="0.5"
         />
       </g>
-      <text
-        x="28" y="33"
-        textAnchor="middle"
-        fontSize="20"
-        dominantBaseline="central"
-      >
-        {getBadgeSymbol(badge.id)}
-      </text>
+      <image
+        href={badge.image || "/landing/book.svg"}
+        x="13"
+        y="13"
+        width="30"
+        height="30"
+        preserveAspectRatio="xMidYMid meet"
+        style={{ filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.4))" }}
+      />
       <defs>
         <linearGradient id={`grad-${badge.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="white" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="black" stopOpacity="0.1" />
+          <stop offset="0%" stopColor={badge.tier === "gold" ? "#FDE047" : badge.tier === "silver" ? "#CBD5E1" : "#F59E0B"} />
+          <stop offset="100%" stopColor={badge.tier === "gold" ? "#EAB308" : badge.tier === "silver" ? "#64748B" : "#92400E"} />
         </linearGradient>
       </defs>
-      <linearGradient
-        id={`grad-${badge.id}`}
-        x1="0%" y1="0%" x2="100%" y2="100%"
-      >
-        <stop offset="0%" stopColor={colors.bg.includes("amber") ? "#D97706" : colors.bg.includes("slate") ? "#64748B" : "#EAB308"} />
-        <stop offset="100%" stopColor={colors.bg.includes("amber") ? "#92400E" : colors.bg.includes("slate") ? "#334155" : "#CA8A04"} />
-      </linearGradient>
     </svg>
   );
 }

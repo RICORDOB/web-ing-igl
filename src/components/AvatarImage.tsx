@@ -1,7 +1,6 @@
 "use client";
 
 import { avatars } from "@/data/avatars";
-import { useState } from "react";
 
 interface AvatarImageProps {
   avatarId: string;
@@ -17,16 +16,13 @@ const SIZES = {
   xl: "w-32 h-32",
 };
 
-const STYLES = ["adventurer", "adventurer-neutral", "big-smile", "icons"];
-
 export default function AvatarImage({
   avatarId,
   size = "md",
   className = "",
   threeD = false,
 }: AvatarImageProps) {
-  const [currentStyle, setCurrentStyle] = useState(0);
-  const [imgError, setImgError] = useState(false);
+  const sizeClass = SIZES[size];
 
   if (avatarId.startsWith("custom-")) {
     const customImage =
@@ -34,7 +30,6 @@ export default function AvatarImage({
         ? localStorage.getItem("cristo-english-custom-avatar")
         : null;
     if (customImage) {
-      const sizeClass = SIZES[size];
       const threeClass = threeD
         ? "transform-gpu transition-all duration-300 hover:scale-110 hover:shadow-2xl"
         : "";
@@ -53,71 +48,37 @@ export default function AvatarImage({
   }
 
   const avatar = avatars.find((a) => a.id === avatarId);
-  if (!avatar) {
-    const sizeClass = SIZES[size];
-    return (
-      <div
-        className={`relative overflow-hidden rounded-2xl ${sizeClass} ${className} flex items-center justify-center shadow-lg bg-gradient-to-br from-purple-400 to-purple-600`}
-      >
-        <span className="text-2xl">😊</span>
-      </div>
-    );
-  }
-
-  const sizeClass = SIZES[size];
-  const style = STYLES[currentStyle % STYLES.length];
-  const dicebearUrl = `https://api.dicebear.com/9.x/${style}/svg?seed=${avatar.dicebearSeed}&backgroundColor=${avatar.color.replace("#", "")}`;
 
   const threeClass = threeD
     ? "transform-gpu transition-all duration-300 hover:scale-110 hover:rotate-2 hover:shadow-2xl"
     : "";
 
-  const cardClass = `relative overflow-hidden rounded-2xl ${sizeClass} ${threeClass} ${className}`;
-
-  if (imgError) {
+  if (!avatar) {
     return (
       <div
-        className={`${cardClass} flex items-center justify-center shadow-lg`}
-        style={{
-          background: `linear-gradient(135deg, ${avatar.color}22, ${avatar.color}44)`,
-          border: `2px solid ${avatar.color}33`,
-        }}
+        className={`relative overflow-hidden rounded-2xl ${sizeClass} ${threeClass} ${className} flex items-center justify-center shadow-lg bg-gradient-to-br from-purple-400 to-purple-600`}
       >
-        <div className="text-center">
-          <div
-            className="text-2xl sm:text-3xl mb-0.5"
-            style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))" }}
-          >
-            {avatar.icon}
-          </div>
-          <div
-            className="text-[8px] font-bold opacity-60 uppercase tracking-wider"
-            style={{ color: avatar.color }}
-          >
-            {avatar.nameEn}
-          </div>
-        </div>
+        <img
+          src="/landing/book.svg"
+          alt="Avatar"
+          className="w-[55%] h-[55%] object-contain"
+        />
       </div>
     );
   }
 
   return (
-    <div className={`${cardClass} shadow-lg group`}>
-      <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-105">
+    <div
+      className={`relative overflow-hidden rounded-2xl ${sizeClass} ${threeClass} ${className} shadow-lg bg-gradient-to-br ${avatar.gradient}`}
+    >
+      <div className="absolute inset-0 bg-white/10 mix-blend-overlay" />
+      <div className="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full bg-white/20 blur-xl" />
+      <div className="relative w-full h-full flex items-center justify-center p-[18%]">
         <img
-          key={style}
-          src={dicebearUrl}
+          src={avatar.image}
           alt={avatar.name}
-          onError={() => {
-            if (currentStyle < STYLES.length - 1) {
-              setCurrentStyle((prev) => prev + 1);
-            } else {
-              setImgError(true);
-            }
-          }}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain drop-shadow-lg"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
     </div>
   );
