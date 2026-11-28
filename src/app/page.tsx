@@ -66,14 +66,14 @@ export default function LandingPage() {
             <Button
               variant="gold"
               size="lg"
-              onClick={() => router.push("/login")}
+              href="/login"
             >
               ¡Comenzar Gratis!
             </Button>
             <Button
               variant="secondary"
               size="lg"
-              onClick={() => router.push("/login")}
+              href="/login"
             >
               Ya tengo cuenta
             </Button>
@@ -153,7 +153,7 @@ export default function LandingPage() {
           <Button
             variant="primary"
             size="lg"
-            onClick={() => router.push("/login")}
+            href="/login"
           >
             ¡Quiero Aprender!
           </Button>

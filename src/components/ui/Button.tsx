@@ -1,12 +1,26 @@
 "use client";
 
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "gold" | "ghost" | "danger";
   size?: "sm" | "md" | "lg";
   children: ReactNode;
+  href?: string;
 }
+
+// Props that are valid for <a> elements (and thus Link)
+const anchorProps = [
+  "href",
+  "target",
+  "rel",
+  "download",
+  "hreflang",
+  "type",
+  "referrerPolicy",
+  "ping",
+] as const;
 
 export default function Button({
   variant = "primary",
@@ -14,6 +28,7 @@ export default function Button({
   children,
   className = "",
   disabled,
+  href,
   ...props
 }: ButtonProps) {
   const base =
@@ -35,9 +50,26 @@ export default function Button({
     lg: "px-8 py-4 text-lg",
   };
 
+  const classNameComputed = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+
+  if (href) {
+    // Filter props to only include valid anchor attributes
+    const linkProps: Record<string, unknown> = {};
+    for (const key of Object.keys(props)) {
+      if (anchorProps.includes(key as typeof anchorProps[number])) {
+        linkProps[key] = props[key as keyof typeof props];
+      }
+    }
+    return (
+      <Link href={href} className={classNameComputed} {...linkProps}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
     <button
-      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={classNameComputed}
       disabled={disabled}
       {...props}
     >
